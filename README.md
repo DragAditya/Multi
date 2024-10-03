@@ -4,8 +4,7 @@
 # 🚀 Telegram Message Forwarding Bot
 
 Welcome to the **Telegram Message Forwarding Bot**, a robust solution for forwarding messages, videos, and other media from users directly to the owner. This bot not only helps you manage incoming messages efficiently but also allows you to respond seamlessly.
-
-![Telegram Bot](https://example.com/your-image.png) <!-- Replace with an actual image link -->
+<!-- Replace with an actual image link -->
 
 ---
 
@@ -140,8 +139,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For further inquiries, feel free to reach out to me at:
 
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Email**: waghaditya312@gmail.com
+- **GitHub**: [@DragAditya](https://github.com/DragAditya)
 
 ---
 
