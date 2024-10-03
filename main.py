@@ -177,4 +177,9 @@ async def main():
 
 # Run the main function to start the bot
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Get the current running loop
+    loop = asyncio.get_event_loop()
+    # Create a task for the main function
+    loop.create_task(main())
+    # Run the loop
+    loop.run_forever()
