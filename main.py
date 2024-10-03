@@ -15,8 +15,8 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 
 # Editable Variables
-OWNER_CHAT_ID = 'YOUR_TELEGRAM_ID'  # Replace with your Telegram user ID
-BOT_TOKEN = 'YOUR_BOT_TOKEN'          # Replace with your bot's token
+OWNER_CHAT_ID = '1183272367'  # Replace with your Telegram user ID
+BOT_TOKEN = '6094405994:AAHX0HrV5Mo2q6Zyuuo-Xmk6Pg4GfP0b5Lc'          # Replace with your bot's token
 LOG_FILE = "message_log.json"         # File to store logs
 USER_RATE_LIMIT = timedelta(minutes=1) # Rate limit period
 
