@@ -160,8 +160,8 @@ async def reply_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     else:
         await update.message.reply_text("The forwarding feature is disabled or this is not a reply to a forwarded message.")
 
-def main():
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+async def main():
+    application = Application.builder().token(BOT_TOKEN).build()
 
     # Handlers
     app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
@@ -173,8 +173,13 @@ def main():
     app.add_error_handler(error_handler)  # Error handler
 
     # Run the bot
-    application.run_polling()
+    await app.run_polling()
 
-if __name__ == '__main__':
-    print("BOT STARTED RUNNING")
-    main()
+# Run the main function to start the bot
+if __name__ == "__main__":
+    # Get the current running loop
+    loop = asyncio.get_event_loop()
+    # Create a task for the main function
+    loop.create_task(main())
+    # Run the loop
+    loop.run_forever()
