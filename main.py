@@ -160,17 +160,23 @@ async def reply_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     else:
         await update.message.reply_text("The forwarding feature is disabled or this is not a reply to a forwarded message.")
 
+
+
+from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, CallbackQueryHandler, filters, ContextTypes
+
+# ... (rest of your code) ...
+
 def main():
-    application = Application.builder().token(BOT_TOKEN).build()
+    application = ApplicationBuilder().token(BOT_TOKEN).build()
 
     # Handlers
-    app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
-    app.add_handler(MessageHandler(filters.REPLY, reply_message))  # Handle owner replies
-    app.add_handler(CommandHandler("switch", switch))  # Handle the /switch command
-    app.add_handler(CommandHandler("status", status))  # Handle the /status command
-    app.add_handler(CommandHandler("help", help_command))  # Handle the /help command
-    app.add_handler(CallbackQueryHandler(lambda update, context: None))  # Placeholder for inline button callbacks
-    app.add_error_handler(error_handler)  # Error handler
+    application.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
+    application.add_handler(MessageHandler(filters.REPLY, reply_message))  # Handle owner replies
+    application.add_handler(CommandHandler("switch", switch))  # Handle the /switch command
+    application.add_handler(CommandHandler("status", status))  # Handle the /status command
+    application.add_handler(CommandHandler("help", help_command))  # Handle the /help command
+    application.add_handler(CallbackQueryHandler(lambda update, context: None))  # Placeholder for inline button callbacks
+    application.add_error_handler(error_handler)  # Error handler
 
     # Run the bot
     application.run_polling()
