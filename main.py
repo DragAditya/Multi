@@ -17,9 +17,9 @@ from collections import defaultdict
 
 # Editable Variables
 OWNER_CHAT_ID = '1183272367'  # Replace with your Telegram user ID
-BOT_TOKEN = '6094405994:AAHX0HrV5Mo2q6Zyuuo-Xmk6Pg4GfP0b5Lc'          # Replace with your bot's token
-LOG_FILE = "message_log.json"         # File to store logs
-USER_RATE_LIMIT = timedelta(minutes=1) # Rate limit period
+BOT_TOKEN = '6094405994:AAHX0HrV5Mo2q6Zyuuo-Xmk6Pg4GfP0b5Lc'  # Replace with your bot's token
+LOG_FILE = "message_log.json"  # File to store logs
+USER_RATE_LIMIT = timedelta(minutes=1)  # Rate limit period
 
 # Initialize log file
 if not os.path.exists(LOG_FILE):
@@ -164,21 +164,16 @@ async def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     # Handlers
-    app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))
-    app.add_handler(MessageHandler(filters.REPLY, reply_message))
-    app.add_handler(CommandHandler("switch", switch))
-    app.add_handler(CommandHandler("status", status))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CallbackQueryHandler(lambda update, context: None))
-    app.add_error_handler(error_handler)
+    app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
+    app.add_handler(MessageHandler(filters.REPLY, reply_message))  # Handle owner replies
+    app.add_handler(CommandHandler("switch", switch))  # Handle the /switch command
+    app.add_handler(CommandHandler("status", status))  # Handle the /status command
+    app.add_handler(CommandHandler("help", help_command))  # Handle the /help command
+    app.add_handler(CallbackQueryHandler(lambda update, context: None))  # Placeholder for inline button callbacks
+    app.add_error_handler(error_handler)  # Error handler
 
-    while True:
-        try:
-            await app.run_polling()
-            break  # Exit loop if polling stops successfully
-        except (TelegramError, Exception) as e:
-            print(f"Error occurred: {e}")
-            await asyncio.sleep(5)  # Wait before retrying
+    # Run the bot
+    await app.run_polling()
 
 # Run the main function to start the bot
 if __name__ == "__main__":
