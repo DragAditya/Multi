@@ -1,4 +1,3 @@
-Certainly! Here’s a more detailed and stylized README for your Telegram bot project. This version includes sections for installation, usage, troubleshooting, features, contribution guidelines, and more, with enhanced formatting for clarity.
 
 ### README.md
 
