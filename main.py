@@ -160,24 +160,24 @@ async def reply_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         await update.message.reply_text("The forwarding feature is disabled or this is not a reply to a forwarded message.")
 
 async def main():
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
+
+    # Handlers
+    app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
+    app.add_handler(MessageHandler(filters.REPLY, reply_message))  # Handle owner replies
+    app.add_handler(CommandHandler("switch", switch))  # Handle the /switch command
+    app.add_handler(CommandHandler("status", status))  # Handle the /status command
+    app.add_handler(CommandHandler("help", help_command))  # Handle the /help command
+    app.add_handler(CallbackQueryHandler(lambda update, context: None))  # Placeholder for inline button callbacks
+    app.add_error_handler(error_handler)  # Error handler
+
     while True:
         try:
-            app = ApplicationBuilder().token(BOT_TOKEN).build()
-
-            # Handlers
-            app.add_handler(MessageHandler(filters.ALL & (~filters.COMMAND), forward_message))  # Forward all messages
-            app.add_handler(MessageHandler(filters.REPLY, reply_message))  # Handle owner replies
-            app.add_handler(CommandHandler("switch", switch))  # Handle the /switch command
-            app.add_handler(CommandHandler("status", status))  # Handle the /status command
-            app.add_handler(CommandHandler("help", help_command))  # Handle the /help command
-            app.add_handler(CallbackQueryHandler(lambda update, context: None))  # Placeholder for inline button callbacks
-            app.add_error_handler(error_handler)  # Error handler
-
             # Run the bot
             await app.run_polling()
         except (TelegramError, Exception) as e:
             print(f"Error occurred: {e}")
-            time.sleep(5)  # Wait for a while before restarting
+            await asyncio.sleep(5)  # Wait for a while before restarting
 
 # Run the main function to start the bot
 if __name__ == "__main__":
