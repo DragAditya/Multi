@@ -160,7 +160,7 @@ async def reply_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     else:
         await update.message.reply_text("The forwarding feature is disabled or this is not a reply to a forwarded message.")
 
-async def main():
+def main():
     application = Application.builder().token(BOT_TOKEN).build()
 
     # Handlers
