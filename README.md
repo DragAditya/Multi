@@ -49,7 +49,7 @@ Welcome to the **Telegram Message Forwarding Bot**, a robust solution for forwar
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/yourusername/telegram-bot.git
+    git clone https://github.com/DragAditya/Multi.git
     cd telegram-bot
     ```
 
